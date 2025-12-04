@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advanced Notes App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+  <header class="topbar">
+    <div class="title-wrap">
+      <h1 class="title">Advanced Notes App</h1>
+      <p class="subtitle">Title, tags, search, pin, edit, dark mode & export</p>
+    </div>
+
+    <div class="search-wrap">
+      <input id="globalSearch" class="input search" placeholder="Search title, content, or tags..." />
+      <button id="toggleTheme" class="chip">Dark</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="panel" aria-label="controls">
+      <label>Title <input id="noteTitle" class="input" placeholder="Note title (optional)"></label>
+      <label>Note <textarea id="noteContent" class="input" rows="4" placeholder="Write your note..."></textarea></label>
+      <label>Tags <input id="noteTags" class="input" placeholder="e.g. study,project,idea"></label>
+
+      <div class="row">
+        <button id="addNoteBtn" class="btn primary">Add Note</button>
+        <button id="clearAll" class="btn">Clear All</button>
+      </div>
+
+      <div class="row">
+        <button id="exportJSON" class="btn">Export JSON</button>
+        <button id="exportTXT" class="btn">Export TXT</button>
+      </div>
+
+      <hr>
+
+      <label>Filter
+        <select id="tagFilter" class="input">
+          <option value="*">All tags</option>
+        </select>
+      </label>
+
+      <div class="row small-gap">
+        <button id="sortDate" class="chip">Sort: Recent</button>
+        <button id="showPinnedOnly" class="chip">Show pinned</button>
+      </div>
+
+      <div>
+        <div class="muted">Quick tag list</div>
+        <div id="quickTags" class="tag-list"></div>
+      </div>
+
+      <footer class="muted" id="notesCount">0 notes</footer>
+    </aside>
+
+    <main class="notes-area">
+      <div id="notesContainer" class="grid" aria-live="polite"></div>
+      <div id="emptyState" class="muted empty" style="display:none">No notes found. Add your first note!</div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog">
+      <header style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Edit note</strong>
+        <button id="closeModal" class="chip">Close</button>
+      </header>
+
+      <label>Title <input id="editTitle" class="input"></label>
+      <label>Note <textarea id="editContent" class="input" rows="4"></textarea></label>
+      <label>Tags <input id="editTags" class="input" placeholder="comma separated"></label>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div id="metaInfo" class="muted"></div>
+        <div style="display:flex;gap:8px">
+          <button id="saveEdit" class="btn primary">Save</button>
+          <button id="deleteFromModal" class="btn danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
